@@ -4,7 +4,8 @@ const CommentSchema = new mongoose.Schema({
     text: {
         type: String,
         required: [true, "Comment text is required"],
-        minlength: [3, "Comment must be at least 3 characters long"],
+        minlength: [5, "Comment must be at least 5 characters long"],
+        maxLength: [200, "Cake comment must be at most 200 characters"]
     },
     yumFactor: {
         type: Number,
@@ -25,11 +26,13 @@ const CakeSchema = new mongoose.Schema(
             required: [true, "Cake name is required"],
             minlength: [3, "Cake name must be at least 3 characters"],
             trim: true,
+            unique: true,
         },
         comment: {
             type: String,
             required: [true, "Cake comment is required"],
-            minlength: [3, "Cake comment must be at least 3 characters"],
+            minlength: [5, "Cake comment must be at least 5 characters"],
+            maxLength: [200, "Cake comment must be at most 200 characters"],
             trim: true,
         },
         comments: [CommentSchema],
